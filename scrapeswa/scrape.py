@@ -1,5 +1,7 @@
+import random
 import re
 import sys
+import time
 from datetime import datetime
 from urllib.parse import urlencode
 
@@ -131,6 +133,7 @@ def get_round_trip(src, dst, out_date, return_date):
                     for element in body.select('#air-booking-product-1 div span ul li')]
 
     # Get data for flights in points
+    time.sleep(random.uniform(0.5, 3))
     url = get_sw_url(src, dst, out_date, return_date, pts=True)
     get_with_retries(url, element_to_wait_for)
     body = BeautifulSoup(driver.find_elements_by_css_selector("body")[0].get_attribute('innerHTML'), features="lxml")
